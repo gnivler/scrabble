@@ -360,6 +360,13 @@ export class Renderer {
             this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
         }
     }
+    
+    forceRefresh() {
+        // Force a resize and re-render
+        this.resizeCanvas();
+        // Clear the canvas
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+    }
 
     rotateBoard() {
         // Rotate the board view
@@ -553,3 +560,5 @@ export class Renderer {
         return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
     }
 }
+
+

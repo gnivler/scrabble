@@ -49,8 +49,18 @@ class ScrabbleApp {
                 this.gameContainer.style.display = 'block';
             }
             
-            // Start the game loop
-            this.gameLoop();
+            // Force a resize and render to ensure proper initialization
+            setTimeout(() => {
+                if (this.renderer) {
+                    this.renderer.forceRefresh();
+                    this.renderer.render(this.game);
+                }
+                
+                // Start the game loop after a short delay to ensure everything is ready
+                setTimeout(() => {
+                    this.gameLoop();
+                }, 100);
+            }, 50);
         } catch (error) {
             console.error('Failed to initialize game:', error);
             if (this.loadingElement) {
